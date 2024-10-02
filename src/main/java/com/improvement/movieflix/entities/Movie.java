@@ -28,6 +28,8 @@ public class Movie {
     private Integer year;
 
     private String imgUrl;
+
+    @Lob
     private String synopsis;
 
     @OneToMany
