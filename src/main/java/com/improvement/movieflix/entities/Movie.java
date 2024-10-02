@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,5 +29,11 @@ public class Movie {
 
     private String imgUrl;
     private String synopsis;
+
+    @OneToMany
+    private Set<Review> reviews = new HashSet<Review>();
+
+    @ManyToOne
+    private Genre genre;
 
 }

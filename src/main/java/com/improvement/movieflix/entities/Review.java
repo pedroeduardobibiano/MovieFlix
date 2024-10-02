@@ -20,4 +20,10 @@ public class Review {
 
     private String text;
 
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
+    private Movie movie;
+
 }
