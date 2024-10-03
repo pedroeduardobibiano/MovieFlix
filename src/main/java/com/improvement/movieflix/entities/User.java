@@ -32,7 +32,7 @@ public class User implements UserDetails {
     )
     Set<Role> roles = new HashSet<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private Set<Review> reviews = new HashSet<>();
 
     private String name;

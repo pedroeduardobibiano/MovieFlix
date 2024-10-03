@@ -13,7 +13,8 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
             select tb_movie.title, 
                    tb_movie.date_year, 
                    tb_movie.sub_title, 
-                   tb_movie.img_url
+                   tb_movie.img_url,
+                   tb_movie.genre_id,
             from tb_movie 
             order by tb_movie.title asc
             """, nativeQuery = true)

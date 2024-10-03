@@ -1,5 +1,6 @@
 package com.improvement.movieflix.resources;
 
+import com.improvement.movieflix.dto.GenreDTO;
 import com.improvement.movieflix.dto.MovieDTO;
 import com.improvement.movieflix.projections.MovieProjection;
 import com.improvement.movieflix.servicies.MovieService;
@@ -46,6 +47,12 @@ public class MovieResource {
     public ResponseEntity<MovieDTO> deleteById(@PathVariable Long id) {
         movieService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping(value = "/{id}/genres")
+    public ResponseEntity<GenreDTO> findGenres(@PathVariable Long id) {
+        GenreDTO dto = movieService.getMovieGenre(id);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
 }

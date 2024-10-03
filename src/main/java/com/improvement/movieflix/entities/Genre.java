@@ -23,7 +23,7 @@ public class Genre {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "genre")
     private Set<Movie> movies = new HashSet<>();
 
 }

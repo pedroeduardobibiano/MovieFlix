@@ -26,9 +26,15 @@ public class GenreService {
 
     @Transactional(readOnly = true)
     public GenreDTO findById(Long id) {
-        Optional<Genre> genre = genreRepository.findById(id);
-        genre.orElseThrow(() -> new EntityNotFoundException("Genre not found"));
-        return new GenreDTO(genre.get());
+        Genre genre = getIdIfIdNotNull(id);
+        return new GenreDTO(genre);
     }
+
+    @Transactional(readOnly = true)
+    public Genre getIdIfIdNotNull(Long id) {
+        Optional<Genre> genre = genreRepository.findById(id);
+        return genre.orElseThrow(() -> new EntityNotFoundException("Genre not found"));
+    }
+
 
 }

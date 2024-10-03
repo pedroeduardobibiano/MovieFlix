@@ -6,8 +6,11 @@ public interface MovieProjection {
 
     String getSub_title();
 
-    String getDate_year();
+    Integer getDate_year();
 
     String getImg_url();
+
+    Integer getGenre_id();
+
 
 }

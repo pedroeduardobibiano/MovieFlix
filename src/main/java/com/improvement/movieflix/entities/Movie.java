@@ -31,10 +31,11 @@ public class Movie {
     @Lob
     private String synopsis;
 
-    @OneToMany
+    @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY)
     private Set<Review> reviews = new HashSet<>();
 
     @ManyToOne
+    @JoinColumn(name = "genre_id")
     private Genre genre;
 
 }

@@ -4,6 +4,9 @@ import com.improvement.movieflix.entities.Movie;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @AllArgsConstructor
 public class MovieDTO {
@@ -15,6 +18,10 @@ public class MovieDTO {
     private String imgUrl;
     private String synopsis;
 
+    private GenreDTO genre;
+
+    private Set<ReviewDTO> reviews = new HashSet<>();
+
     public MovieDTO(Movie movie) {
         id = movie.getId();
         title = movie.getTitle();
@@ -22,6 +29,8 @@ public class MovieDTO {
         dateYear = movie.getDateYear();
         imgUrl = movie.getImgUrl();
         synopsis = movie.getSynopsis();
+        genre = new GenreDTO(movie.getGenre());
+        movie.getReviews().forEach(review -> this.reviews.add(new ReviewDTO(review)));
     }
 
 
