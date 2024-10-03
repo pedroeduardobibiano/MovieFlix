@@ -11,7 +11,7 @@ public class MovieDTO {
     private Long id;
     private String title;
     private String subTitle;
-    private Integer year;
+    private Integer dateYear;
     private String imgUrl;
     private String synopsis;
 
@@ -19,7 +19,7 @@ public class MovieDTO {
         id = movie.getId();
         title = movie.getTitle();
         subTitle = movie.getSubTitle();
-        year = movie.getYear();
+        dateYear = movie.getDateYear();
         imgUrl = movie.getImgUrl();
         synopsis = movie.getSynopsis();
     }

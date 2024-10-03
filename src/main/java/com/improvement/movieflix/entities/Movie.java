@@ -24,8 +24,7 @@ public class Movie {
     private String title;
     private String subTitle;
 
-    @Column(name="´year´")
-    private Integer year;
+    private Integer dateYear;
 
     private String imgUrl;
 
@@ -33,7 +32,7 @@ public class Movie {
     private String synopsis;
 
     @OneToMany
-    private Set<Review> reviews = new HashSet<Review>();
+    private Set<Review> reviews = new HashSet<>();
 
     @ManyToOne
     private Genre genre;
