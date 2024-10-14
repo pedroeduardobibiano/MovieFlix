@@ -3,12 +3,14 @@ package com.improvement.movieflix.dto;
 import com.improvement.movieflix.entities.Movie;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class MovieDTO {
 
     private Long id;
@@ -32,6 +34,5 @@ public class MovieDTO {
         genre = new GenreDTO(movie.getGenre());
         movie.getReviews().forEach(review -> this.reviews.add(new ReviewDTO(review)));
     }
-
 
 }

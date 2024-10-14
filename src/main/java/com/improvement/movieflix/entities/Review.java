@@ -1,5 +1,6 @@
 package com.improvement.movieflix.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,8 +25,10 @@ public class Review {
     @JoinColumn(name = "user_id")
     private User user;
 
+
     @ManyToOne
     @JoinColumn(name = "movie_id")
+    @JsonBackReference
     private Movie movie;
 
 }

@@ -1,5 +1,6 @@
 package com.improvement.movieflix.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,6 +33,7 @@ public class Movie {
     private String synopsis;
 
     @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Set<Review> reviews = new HashSet<>();
 
     @ManyToOne

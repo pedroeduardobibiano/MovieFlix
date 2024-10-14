@@ -2,8 +2,9 @@ package com.improvement.movieflix.resources;
 
 import com.improvement.movieflix.dto.GenreDTO;
 import com.improvement.movieflix.dto.MovieDTO;
+import com.improvement.movieflix.dto.ReviewDTO;
 import com.improvement.movieflix.projections.MovieProjection;
-import com.improvement.movieflix.servicies.MovieService;
+import com.improvement.movieflix.services.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,8 +21,10 @@ public class MovieResource {
 
 
     @GetMapping
-    public ResponseEntity<Page<MovieProjection>> findAllPagedAsc(Pageable pageable) {
-        Page<MovieProjection> list = movieService.findMoviesPaged(pageable);
+    public ResponseEntity<Page<MovieProjection>> findAllPagedAsc(
+            @RequestParam(value = "genreId", required = false) Long genreId,
+            Pageable pageable) {
+        Page<MovieProjection> list = movieService.findMoviesPaged(genreId ,pageable);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
@@ -52,6 +55,12 @@ public class MovieResource {
     @GetMapping(value = "/{id}/genres")
     public ResponseEntity<GenreDTO> findGenres(@PathVariable Long id) {
         GenreDTO dto = movieService.getMovieGenre(id);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{id}/reviews")
+    public ResponseEntity<ReviewDTO> findReviews(@PathVariable Long id) {
+        ReviewDTO dto = movieService.getMovieReview(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 

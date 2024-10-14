@@ -1,7 +1,7 @@
 package com.improvement.movieflix.resources;
 
 import com.improvement.movieflix.dto.UserDTO;
-import com.improvement.movieflix.servicies.UserService;
+import com.improvement.movieflix.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

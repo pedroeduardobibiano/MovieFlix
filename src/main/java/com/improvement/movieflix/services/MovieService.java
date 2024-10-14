@@ -1,13 +1,15 @@
-package com.improvement.movieflix.servicies;
+package com.improvement.movieflix.services;
 
 import com.improvement.movieflix.dto.GenreDTO;
 import com.improvement.movieflix.dto.MovieDTO;
+import com.improvement.movieflix.dto.ReviewDTO;
 import com.improvement.movieflix.entities.Genre;
 import com.improvement.movieflix.entities.Movie;
+import com.improvement.movieflix.entities.Review;
 import com.improvement.movieflix.projections.MovieProjection;
 import com.improvement.movieflix.repositories.GenreRepository;
 import com.improvement.movieflix.repositories.MovieRepository;
-import jakarta.persistence.EntityNotFoundException;
+import com.improvement.movieflix.services.exceptions.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -25,8 +28,8 @@ public class MovieService {
 
 
     @Transactional(readOnly = true)
-    public Page<MovieProjection> findMoviesPaged(Pageable pageable) {
-        return movieRepository.findMovieOrderByAsc(pageable);
+    public Page<MovieProjection> findMoviesPaged(Long genreId, Pageable pageable) {
+        return movieRepository.findMovie(genreId, pageable);
     }
 
 
@@ -65,6 +68,16 @@ public class MovieService {
         return new GenreDTO(genre);
     }
 
+    @Transactional(readOnly = true)
+    public ReviewDTO getMovieReview(Long id) {
+        Movie movie = getIdIfIdNotNull(id);
+        Set<Review> review = movie.getReviews();
+        for (Review reviews : review) {
+            return new ReviewDTO(reviews);
+        }
+        return null;
+    }
+
 
     @Transactional(readOnly = true)
     public Movie getIdIfIdNotNull(Long id) {
@@ -83,5 +96,12 @@ public class MovieService {
         Genre genre = genreRepository.getReferenceById(dto.getGenre().getId());
         movie.setGenre(genre);
     }
+
+    @Transactional
+    public Movie getReviewMovie(ReviewDTO reviewDTO) {
+        return movieRepository.findById(reviewDTO.getMovie())
+                .orElseThrow(() -> new EntityNotFoundException("Movie not found"));
+    }
+
 
 }

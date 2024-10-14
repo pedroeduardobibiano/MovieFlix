@@ -1,9 +1,11 @@
-package com.improvement.movieflix.servicies;
+package com.improvement.movieflix.services;
 
 
+import com.improvement.movieflix.dto.ReviewDTO;
 import com.improvement.movieflix.dto.UserDTO;
 import com.improvement.movieflix.entities.User;
 import com.improvement.movieflix.repositories.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +43,12 @@ public class UserService implements UserDetailsService {
         }
         logger.info("User found {}", username);
         return byEmail.get();
+    }
+
+    @Transactional
+    public User getReviewAuthor(ReviewDTO reviewDTO){
+        return userRepository.findById(reviewDTO.getUser())
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
 
 

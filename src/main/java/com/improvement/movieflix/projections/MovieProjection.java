@@ -4,13 +4,13 @@ public interface MovieProjection {
 
     String getTitle();
 
-    String getSub_title();
+    String getSubTitle();
 
-    Integer getDate_year();
+    Integer getDateYear();
 
-    String getImg_url();
+    String getImgUrl();
 
-    Integer getGenre_id();
+    Long getGenreId();
 
 
 }
