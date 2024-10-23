@@ -14,11 +14,11 @@ import java.util.Optional;
 
 @DataJpaTest(showSql = false)
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
-public class MovieRepositoryTests {
+public class MovieRepositoryTest {
 
     private final MovieRepository movieRepository;
 
-    public MovieRepositoryTests(MovieRepository movieRepository) {
+    public MovieRepositoryTest(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }
 

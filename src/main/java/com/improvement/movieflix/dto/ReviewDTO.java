@@ -6,9 +6,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ReviewDTO {
 
     private Long id;
@@ -26,7 +28,6 @@ public class ReviewDTO {
         text = review.getText();
         user = review.getUser().getId();
         movie = review.getMovie().getId();
-
     }
 
 }

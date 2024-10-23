@@ -5,7 +5,7 @@ import com.improvement.movieflix.entities.Movie;
 import com.improvement.movieflix.entities.Review;
 import com.improvement.movieflix.entities.User;
 import com.improvement.movieflix.repositories.ReviewRepository;
-import jakarta.persistence.EntityNotFoundException;
+import com.improvement.movieflix.services.exceptions.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +30,7 @@ public class ReviewService {
     @Transactional(readOnly = true)
     public Review getIdIfIdNotNull(Long id) {
         Optional<Review> review = reviewRepository.findById(id);
-        return review.orElseThrow(() -> new EntityNotFoundException("Id not Exist"));
+        return review.orElseThrow(() -> new EntityNotFoundException("not Found id"));
     }
 
     @Transactional
